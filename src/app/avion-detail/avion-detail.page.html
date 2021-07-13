@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del avión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="reset-padding">
+    <ion-row>
+      <ion-col size="12" class="image-descript">
+        <img
+          #imageTop
+          [src]="showProperties[0].imageAvion"
+          [alt]="showProperties[0].descripcion"
+        />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab
+    *ngIf="offsetTopBtn !== 0"
+    vertical="center"
+    horizontal="end"
+    slot="fixed"
+    [style.top]="offsetTopBtn+'px'"
+  >
+    <ion-fab-button (click)="editForm()" [color]="enableEdit ? 'secondary':'primary'">
+      <ion-icon [name]="enableEdit ? 'cloud-done':'create'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <form [formGroup]="createAvionForm">
+    <ion-item>
+      <ion-label position="floating">Referencia del avión</ion-label>
+      <ion-input
+        type="text"
+        formControlName="referencia"
+        style="text-transform: uppercase"
+      ></ion-input>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Origen</ion-label>
+            <ion-input
+              style="text-transform: capitalize"
+              formControlName="origen"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Destino</ion-label>
+            <ion-input
+              style="text-transform: capitalize"
+              formControlName="destino"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Cantidad Contenedores</ion-label>
+            <ion-input
+              type="number"
+              formControlName="cantidadContenedores"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Total de carga</ion-label>
+            <ion-input type="number" formControlName="totalCarga"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-label>Unidad de medida</ion-label>
+      <ion-select placeholder="Select One" formControlName="UMedidaCarga">
+        <ion-select-option value="T">Toneladas</ion-select-option>
+        <ion-select-option value="hg">Hectagramos</ion-select-option>
+        <ion-select-option value="kg">Kilogramos</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripcion de la carga</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer *ngIf="enableEdit">
+  <ion-toolbar>
+    <ion-button expand="block">Guardar</ion-button>
+  </ion-toolbar>
+</ion-footer>

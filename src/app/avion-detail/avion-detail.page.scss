@@ -1,0 +1,13 @@
+.reset-padding {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  .image-descript {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    img {
+      width: 100%;
+    }
+  }
+}

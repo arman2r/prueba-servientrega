@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear avión</ion-title>
+    <ion-button icon-only (click)="closeModal()" color="accent" slot="end">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <form [formGroup]="createAvionForm">
+      <ion-item>
+        <ion-label position="floating">Referencia del avión</ion-label>
+        <ion-input
+          type="text"
+          formControlName="referencia"
+          style="text-transform: uppercase"
+        ></ion-input>
+      </ion-item>
+      <ion-item class="image-avion">
+        <ion-avatar *ngIf="avionFile !== undefined" slot="start"><img [src]="imgURL"></ion-avatar>
+        <ion-label position="floating">Foto del avión</ion-label>
+        <ion-input
+          formControlName="imageAvion"
+          class="inpt-file"
+          type="file"
+          (change)="setImageAvion($event)"
+          accept="image/*"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Origen</ion-label>
+        <ion-input
+          style="text-transform: capitalize"
+          formControlName="origen"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Destino</ion-label>
+        <ion-input
+          style="text-transform: capitalize"
+          formControlName="destino"
+        ></ion-input>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Cantidad Contenedores</ion-label>
+              <ion-input
+                type="number"
+                formControlName="cantidadContenedores"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Total de carga</ion-label>
+              <ion-input type="number" formControlName="totalCarga"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item>
+        <ion-label>Unidad de medida</ion-label>
+        <ion-select placeholder="Select One" formControlName="UMedidaCarga">
+          <ion-select-option value="T">Toneladas</ion-select-option>
+          <ion-select-option value="hg">Hectagramos</ion-select-option>
+          <ion-select-option value="kg">Kilogramos</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripcion de la carga</ion-label>
+        <ion-textarea formControlName="descripcion"></ion-textarea>
+      </ion-item>
+    </form>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-button
+    (click)="setAvion()"
+    [disabled]="!createAvionForm.valid"
+    expand="block"
+    >Crear Avión</ion-button
+  >
+</ion-footer>

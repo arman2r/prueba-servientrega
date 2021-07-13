@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'avion-detail',
+    loadChildren: () => import('./avion-detail/avion-detail.module').then( m => m.AvionDetailPageModule)
+  },
+  {
+    path: 'create-avion',
+    loadChildren: () => import('./create-avion/create-avion.module').then( m => m.CreateAvionPageModule)
+  },
 ];
 
 @NgModule({
